@@ -1,4 +1,4 @@
-export default function HomePage() {
+export default function Home() {
     return (
         <>
             <h1>Welcome to Henry Christian's Website</h1>

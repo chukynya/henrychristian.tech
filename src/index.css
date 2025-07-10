@@ -57,6 +57,7 @@
   --navbar-text-color: hsl(0,0%,100%);
   --navbar-text-color-focus: white;
   --navbar-bg-contrast: hsl(0, 0%, 20%);
+  --navbar-height: 64px;
 }
 
 /* CSS Reset */

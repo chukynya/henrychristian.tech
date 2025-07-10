@@ -1,0 +1,196 @@
+#navbar {
+  position: fixed;
+  height: var(--navbar-height);
+  background-color: var(--navbar-text-color);
+  left: 0;
+  right: 0;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); */
+}
+
+.container {
+  max-width: 1400px;
+  padding: 0 1.4rem;
+  margin: 0 auto;
+}
+
+.navbar-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
+}
+
+.home-link {
+  font-family: "Lora", serif;
+  font-size: 1.1rem;
+}
+
+.home-link,
+.navbar-link {
+  display: flex;
+  font-weight: 300;
+  align-items: center;
+}
+
+#navbar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.5s ease;
+}
+
+#navbar-toggle[aria-expanded="true"] {
+  transform: rotate(-90deg);
+}
+
+#navbar-toggle[aria-expanded="true"] .icon-bar:is(:first-child, :last-child) {
+  position: absolute;
+  margin: 0;
+  width: 24px;
+}
+
+#navbar-toggle[aria-expanded="true"] .icon-bar:first-child {
+  transform: rotate(45deg);
+}
+
+#navbar-toggle[aria-expanded="true"] .icon-bar:nth-child(2) {
+  opacity: 0;
+}
+
+#navbar-toggle[aria-expanded="true"] .icon-bar:last-child {
+  transform: rotate(-45deg);
+}
+
+.icon-bar {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  margin: 2px;
+  background-color: var(--navbar-bg-contrast);
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease,
+    margin 0.3s ease, position 0.3s ease;
+}
+
+#navbar-toggle[aria-expanded="true"] + #navbar-menu {
+  max-height: calc(100vh - var(--navbar-height));
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  visibility: visible;
+  transform: translateY(0);
+  transition: max-height 0.5s ease-in-out, opacity 0.3s ease,
+    visibility 0s linear 0s, transform 0.4s ease;
+}
+
+#navbar-menu {
+  position: fixed;
+  top: var(--navbar-height);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* While opacity: 0 and visibility: hidden may seem redundant, it’s a good practice to apply both if you want to animate the menu’s visibility later with the transition property.  */
+  opacity: 0;
+  visibility: hidden;
+
+  /* transition for the box of hamburger menu | slide down*/
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out, opacity 0.6s ease-out,
+    visibility 0s linear 0.3s;
+}
+
+.navbar-item {
+  margin: 0.4em;
+  width: 100%;
+}
+
+.navbar-link {
+  justify-content: center;
+  width: 100%;
+  padding: 0.4em 0.8em;
+  color: var(--navbar-text-color-focus);
+  font-family: "Lora", serif;
+  font-weight: 300;
+}
+
+.navbar-link:is(:focus, :hover) {
+  color: var(--navbar-text-color-focus);
+  background-color: var(--navbar-bg-contrast);
+}
+
+.navbar-links {
+  list-style: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: var(--navbar-bg-contrast);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1.4rem;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+#navbar-toggle[aria-expanded="true"] + #navbar-menu .navbar-links {
+  padding: 1em;
+}
+
+@media screen and (min-width: 700px) {
+  .navbar-container {
+    flex-direction: row;
+  }
+  #navbar-toggle {
+    display: none;
+  }
+
+  #navbar-menu,
+  #navbar-toggle[aria-expanded="true"] + #navbar-menu {
+    visibility: visible !important;
+    opacity: 1 !important;
+    max-height: none !important;
+    position: static !important;
+    overflow: visible !important;
+    display: block;
+    height: 100%;
+    background-color: transparent !important;
+    transform: none !important;
+  }
+
+  .navbar-links,
+  #navbar-toggle[aria-expanded="true"] + #navbar-menu .navbar-links {
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    position: static !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    width: auto !important;
+    height: 100% !important;
+    background-color: transparent !important;
+  }
+
+  .navbar-item {
+    width: auto !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 1.5rem;
+  }
+
+  .navbar-link {
+    color: var(--navbar-bg-contrast) !important;
+    padding: 0 2rem !important;
+    height: 50%;
+  }
+
+  .navbar-link:is(:focus, :hover) {
+    background-color: transparent !important;
+  }
+}
